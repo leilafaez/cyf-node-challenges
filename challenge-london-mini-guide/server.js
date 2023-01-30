@@ -2,7 +2,9 @@ const { response } = require("express");
 const express= require("express");
 const { request } = require("http");
 const app=express();
+const cors= require("cors")
 
+app.use(cors())
 app.use(express.json())
 
 const Harrow=require("./data/Harrow.json")
@@ -21,56 +23,48 @@ app.get("/allPharmecies",(request,response)=>{
 })
 //Level 200
 app.get("/pharmacies", (request, response) => {
-    const pharmecies=Stratforf.pharmacies;
-    response.json({ pharmecies });
+    response.json(Stratforf.pharmacies);
 });
 app.get("/colleges", (request, response) => {
-    const colleges=Stratforf.colleges;
-    response.json({colleges});
+    response.json(Stratforf.colleges);
 });
 app.get("/doctors", (request, response) => {
-    const doctors=Stratforf.doctors;
-    response.json({doctors})
+    response.json(Stratforf.doctors)
 });
 app.get("/hospitals", (request, response) => {
-    const hospitals= Stratforf.hospitals;
-    response.json({hospitals})
+    response.json(Stratforf.hospitals)
 });
 
 // Level 300
 app.get("/:city/pharmacies", (request, response) => {
     const cities = eval("(" + request.params.city + ")");
-    const pharmecyByCity = cities.pharmacies;
-    response.json( {pharmecyByCity});
+    response.json( cities.pharmacies);
 });
 app.get("/:city/colleges", (request, response) => {
     const cities = eval("(" + request.params.city + ")");
-    const collegesByCity = cities.colleges;
-    response.json({ collegesByCity });
+    response.json(cities.colleges);
 });
 app.get("/:city/doctors", (request, response) => {
       const cities = eval("(" + request.params.city + ")");
-      const doctorsByCity = cities.doctors;
-      response.json({ doctorsByCity });
+      response.json(cities.doctors);
 });
 app.get("/:city/hospitals", (request, response) => {
     const cities = eval("(" + request.params.city + ")");
-    const hospitalsByCity = cities.hospitals;
-    response.json({ hospitalsByCity });
+    response.json(cities.hospitals);
 });
 
 //level 500
 app.get("/app/:city/:category",(request,response)=>{
 const cities = eval("(" + request.params.city + ")");
 const category = request.params.category;
-const categoryData = cities[category]
-response.json({categoryData})
+response.json(cities[category])
+
 })
 
 
 
 
-const port= process.env.PORT || 3000;
+const port= process.env.PORT || 5000;
 app.listen(port,()=>{
     console.log(`server is ready on ${port}`);
 })
