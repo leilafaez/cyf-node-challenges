@@ -37,25 +37,25 @@ app.get("/hospitals", (request, response) => {
 
 // Level 300
 app.get("/:city/pharmacies", (request, response) => {
-    const cities = eval("(" + request.params.city + ")");
+    const cities = eval( request.params.city );
     response.json( cities.pharmacies);
 });
 app.get("/:city/colleges", (request, response) => {
-    const cities = eval("(" + request.params.city + ")");
+    const cities = eval(request.params.city );
     response.json(cities.colleges);
 });
 app.get("/:city/doctors", (request, response) => {
-      const cities = eval("(" + request.params.city + ")");
+      const cities = eval(request.params.city );
       response.json(cities.doctors);
 });
 app.get("/:city/hospitals", (request, response) => {
-    const cities = eval("(" + request.params.city + ")");
+    const cities = eval(request.params.city);
     response.json(cities.hospitals);
 });
 
 //level 500
 app.get("/app/:city/:category",(request,response)=>{
-const cities = eval("(" + request.params.city + ")");
+const cities = eval( request.params.city );
 const category = request.params.category;
 response.json(cities[category])
 
